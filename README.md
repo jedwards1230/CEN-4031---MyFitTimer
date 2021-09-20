@@ -67,5 +67,7 @@ Data Access Layer – Entity Framework.
 **************
 
 DI 5 pts
+
 Unit Tests 5 pts
+
 REST 5 pts
