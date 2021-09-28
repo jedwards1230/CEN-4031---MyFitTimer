@@ -35,25 +35,24 @@
 .button{
     margin: auto;
     size: 70px;
-    width: 50%;
+    width: 40%;
     background-color: rgb(67, 67, 82);
     border-radius: 24px;
     border: 2px solid white;
     padding: 8px;
-}
-
-.button-text{
     font-family: rigid-square, sans-serif;
     font-weight: 200;
     font-style: normal;
     color:white;
     font-size: 24px;
+    cursor: pointer;
 }
 
 .button:hover{
-    fill: white;
+    background-color: white;
     color: rgb(67, 67, 82);
 }
+
 
 .history{
     margin: auto;
