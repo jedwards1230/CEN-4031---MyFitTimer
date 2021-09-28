@@ -38,8 +38,7 @@ var startbutton = document.getElementById('startButton');
     
             disableStopButton()
             elapsedTime(stopTime, startTime);
-            let x = Date(1632783668042);
-            x.getHours();
+            
             
             //Post to DB
             JSON.stringify({startTime: startTime, stopTime: stopTime}); 
