@@ -1,0 +1,73 @@
+#background{
+    background-color:rgb(67, 67, 82);
+}
+
+.timer{
+    display:block;
+    margin: auto;
+    margin-top: 250px;
+    margin-bottom: 250px;
+    margin-left: 6px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding-left: 12px;
+}
+
+.timer-text{
+    color: rgb(217, 212, 228);
+    font-family: bitcount-prop-single-circle;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 160px;
+    text-align: center;
+}
+
+.button-cluster{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    margin: auto;
+    width: 50%;
+}
+
+.button{
+    margin: auto;
+    size: 70px;
+    width: 50%;
+    background-color: rgb(67, 67, 82);
+    border-radius: 24px;
+    border: 2px solid white;
+    padding: 8px;
+}
+
+.button-text{
+    font-family: rigid-square, sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    color:white;
+    font-size: 24px;
+}
+
+.button:hover{
+    fill: white;
+    color: rgb(67, 67, 82);
+}
+
+.history{
+    margin: auto;
+    margin-top: 80px;
+    background-color: rgb(44, 44, 54);
+    height: 100px;
+    width: 30%;
+    overflow: auto;
+    padding: 8px;
+}
+
+.history-text{
+    font-family: rigid-square, sans-serif;
+    font-weight: 200;
+    font-style: italic;
+    color: rgb(82, 82, 82);
+}
