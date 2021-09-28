@@ -1,22 +1,46 @@
-
-<html>
-<body>
-    Hello world!
+<head>
+    <script>
+        // Fetch Fonts
+        (function(d) {
+          var config = {
+            kitId: 'uev0owm',
+            scriptTimeout: 3000,
+            async: true
+          },
+          h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+        })(document);
     
-    <button id="startButton">Start</button>
-    <button id="stopButton">Stop</button>
-    <br>
-    Start Time (hh:mm:ss): <p id="stime"></p>
-    Stop Time (hh:mm:ss): <p id="sptime"></p>
-    <br>
-    Elapsed Time (seconds): <p id="deltaTime"></p>
-    <br>
+    </script>
 
-
-
-
-    <script type="text/javascript" src="../static/data.js"></script>    
-
-   
-</body>
+    <link rel="stylesheet" href="style.css">
+</head>
+<html>
+<body id="background">
+    <div class="timer">
+        <p class="timer-text">00:00:00</p>
+    </div>
+    <div class="button-cluster">
+        <button id="startButton" class="button">Start</button>
+        <button id="stopButton" class="button">Stop</button>
+        <br>
+        Start Time (hh:mm:ss): <p id="stime"></p>
+        Stop Time (hh:mm:ss): <p id="sptime"></p>
+        <br>
+        Elapsed Time (seconds): <p id="deltaTime"></p>
+        <br>
+    </div>
+    <div class="history">
+        <p class="history-text"> Stuff will go here and it will look cool.<br></p>
+        <p class="history-text"> Stuff will go here and it will look cool.<br></p>
+        <p class="history-text"> Stuff will go here and it will look cool.<br></p>
+        <p class="history-text"> Stuff will go here and it will look cool.<br></p>
+        <p class="history-text"> Stuff will go here and it will look cool.<br></p>
+        <p class="history-text"> Stuff will go here and it will look cool.<br></p>
+        <p class="history-text"> Stuff will go here and it will look cool.<br></p>
+        <p class="history-text"> Stuff will go here and it will look cool.<br></p>
+    </div>
+  
+  <script type="text/javascript" src="../static/data.js"></script>   
+  </body>
 </html>
+
