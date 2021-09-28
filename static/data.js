@@ -1,6 +1,3 @@
-//to get the historic times
-var times = JSON.parse('{{ data | tojson | safe}}');
-
 var startbutton = document.getElementById('startButton');
         var stopbutton = document.getElementById('stopButton');
         stopbutton.disabled = true;
