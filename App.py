@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from sqlalchemy import Column, Integer
-from sqlalchemy.sql.sqltypes import BIGINT, TIMESTAMP, Date, Time
+from sqlalchemy.sql.sqltypes import BIGINT
 from data_connection import Session, engine, Base
-import json
 
 
 class Entry(Base):
@@ -49,7 +48,14 @@ def get_post_javascript_data():
     session.commit()
     session.close()
 
-    return jsdata
+    # Query all rows from db
+    times = session.query(Entry).all()
+
+    # Assign times to array
+    all_times = [{'startTime':time.start_time,'stopTime':time.stop_time} for time in times]
+
+    # Return JSON object of historic times
+    return jsonify(all_times)
 
 
 if __name__ == '__main__':
