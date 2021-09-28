@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 from sqlalchemy import Column, Integer
-from sqlalchemy.sql.sqltypes import BIGINT, TIMESTAMP, Date, Time
+from sqlalchemy.sql.sqltypes import BIGINT
 from data_connection import Session, engine, Base
-import json
 
 
 class Entry(Base):
@@ -27,10 +26,27 @@ app = Flask("Timer")
 app.debug = True
 Base.metadata.create_all(engine)
 
+def grab_history():
+    # Create SQL session
+    session = Session()
+
+    # Query all rows from db
+    times = session.query(Entry).all()
+    session.close()
+
+    # Assign times to array
+    all_times = [{'startTime':time.start_time,'stopTime':time.stop_time} for time in times]
+
+    # Return JSON object of historic times
+    return all_times
+
 # Serve Main page
 @app.route('/')
 def index():
-    return render_template('index.html')
+    # Grabs historic times
+    data = grab_history()
+    # Passes data to index.html
+    return render_template('index.html', data=data)
 
 # POST request directory
 @app.route('/postmethod', methods = ['POST'])
@@ -49,7 +65,7 @@ def get_post_javascript_data():
     session.commit()
     session.close()
 
-    return jsdata
+    return '/'
 
 
 if __name__ == '__main__':
