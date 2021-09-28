@@ -47,6 +47,17 @@ var startbutton = document.getElementById('startButton');
                 javascript_data: data 
               });   
                 
+               /*$.ajax({
+                type: "POST",
+                url: "/postmethod",
+                data: JSON.stringify({startTime: startTime, stopTime: stopTime}),
+                contentType: "application/json",
+                dataType: 'json',
+                success: function(result) {
+                  numRows.innerHTML = result.rows; 
+                } 
+              });*/
+                
             return stopTime;
         }
     
