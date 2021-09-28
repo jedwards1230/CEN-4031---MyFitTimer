@@ -1,3 +1,6 @@
+//to get the historic times
+var times = JSON.parse('{{ data | tojson | safe}}');
+
 var startbutton = document.getElementById('startButton');
         var stopbutton = document.getElementById('stopButton');
         stopbutton.disabled = true;
@@ -21,7 +24,6 @@ var startbutton = document.getElementById('startButton');
             
             disableStartButton();
     
-            //save to DB 
             return startTime;
     
         }
@@ -41,7 +43,10 @@ var startbutton = document.getElementById('startButton');
             
             
             //Post to DB
-            JSON.stringify({startTime: startTime, stopTime: stopTime}); 
+              $.post( "/postmethod", {
+                javascript_data: data 
+              });   
+                
             return stopTime;
         }
     
