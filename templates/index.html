@@ -32,7 +32,11 @@
         <br>
     </div>
     <div class="history">
-        <p class="history-text"> Stuff will go here and it will look cool.<br></p>
+        <ul class="history-text">
+            {% for times in all_times%}
+              <li>{{ times.startTime}} - {{ times.stopTime}}</li>
+            {% endfor %}  
+        </ul>
         <p class="history-text"> Stuff will go here and it will look cool.<br></p>
         <p class="history-text"> Stuff will go here and it will look cool.<br></p>
         <p class="history-text"> Stuff will go here and it will look cool.<br></p>
