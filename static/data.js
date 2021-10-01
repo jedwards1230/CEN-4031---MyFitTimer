@@ -40,11 +40,11 @@ var startbutton = document.getElementById('startButton');
             
             
             //Post to DB
-              $.post( "/postmethod", {
+             /* $.post( "/postmethod", {
                 javascript_data: data 
-              });   
+              }); */  
                 
-               /*$.ajax({
+               $.ajax({
                 type: "POST",
                 url: "/postmethod",
                 data: JSON.stringify({startTime: startTime, stopTime: stopTime}),
@@ -53,7 +53,7 @@ var startbutton = document.getElementById('startButton');
                 success: function(result) {
                   numRows.innerHTML = result.rows; 
                 } 
-              });*/
+              });
                 
             return stopTime;
         }
