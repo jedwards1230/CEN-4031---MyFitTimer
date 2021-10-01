@@ -88,3 +88,12 @@ var startbutton = document.getElementById('startButton');
             document.getElementById('deltaTime').style.display = "block";
     
         }
+
+        function iterateHistory(times){
+                var parent = document.getElementById('history');
+                var p = document.createElement("p");
+                p.id = 'history-text';
+                parent.appendChild(p);
+        
+        }
+
