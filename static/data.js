@@ -16,8 +16,8 @@ var startbutton = document.getElementById('startButton');
             startTime = new Date();
     
             // To get time in hh:mm formate
-            var stime = [ startTime.getHours(), String(startTime.getMinutes()).padStart(2,"0"), String(startTime.getSeconds()).padStart(2,"0")].join(":");
-            document.getElementById("stime").innerHTML = stime;
+            //var stime = [ startTime.getHours(), String(startTime.getMinutes()).padStart(2,"0"), String(startTime.getSeconds()).padStart(2,"0")].join(":");
+            //document.getElementById("stime").innerHTML = stime;
             
             disableStartButton();
     
@@ -32,8 +32,8 @@ var startbutton = document.getElementById('startButton');
             
             
             // To get time in hh:mm formate
-            var sptime = [ stopTime.getHours(), String(stopTime.getMinutes()).padStart(2,"0"), String(stopTime.getSeconds()).padStart(2,"0")].join(":");
-            document.getElementById("sptime").innerHTML = sptime;    
+            //var sptime = [ stopTime.getHours(), String(stopTime.getMinutes()).padStart(2,"0"), String(stopTime.getSeconds()).padStart(2,"0")].join(":");
+            //document.getElementById("sptime").innerHTML = sptime;    
     
             disableStopButton()
             elapsedTime(stopTime, startTime);
@@ -47,7 +47,7 @@ var startbutton = document.getElementById('startButton');
                $.ajax({
                 type: "POST",
                 url: "/postmethod",
-                data: JSON.stringify({startTime: startTime, stopTime: stopTime}),
+                data: JSON.stringify({startTime: startTime.getTime(), stopTime: stopTime.getTime()}),
                 contentType: "application/json",
                 dataType: 'json',
                 success: function(result) {
@@ -60,11 +60,11 @@ var startbutton = document.getElementById('startButton');
     
     
         //function to calculate elapsed time
-        function elapsedTime(stopTime, startTime){
+        /*function elapsedTime(stopTime, startTime){
     
             var deltaTime = stopTime.getTime() - startTime.getTime();
             document.getElementById("deltaTime").innerHTML = Math.abs(Math.round(deltaTime/1000));
-        }
+        }*/
     
 
         //To insure Start button can't be clicked more than once without clicking the stop button
@@ -73,8 +73,8 @@ var startbutton = document.getElementById('startButton');
             document.getElementById('stopButton').disabled = false;
             
             //Will not display the previous elapsed time and the stop time
-            document.getElementById('sptime').style.display = "none";
-            document.getElementById('deltaTime').style.display = "none";
+            //document.getElementById('sptime').style.display = "none";
+            //document.getElementById('deltaTime').style.display = "none";
         }
         
 
@@ -84,8 +84,8 @@ var startbutton = document.getElementById('startButton');
             document.getElementById('stopButton').disabled = true;
             
             //Will display the elapsed time and the stop time
-            document.getElementById('sptime').style.display = "block";
-            document.getElementById('deltaTime').style.display = "block";
+            //document.getElementById('sptime').style.display = "block";
+            //document.getElementById('deltaTime').style.display = "block";
     
         }
 
