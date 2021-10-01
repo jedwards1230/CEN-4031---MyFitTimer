@@ -12,6 +12,7 @@
 
         // To get the historic times
         var times = JSON.parse('{{ data | tojson | safe}}');
+        iterateHistory();
     </script>
 
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
