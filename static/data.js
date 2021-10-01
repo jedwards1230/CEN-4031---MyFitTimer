@@ -89,7 +89,7 @@ var startbutton = document.getElementById('startButton');
         }
 
         function iterateHistory(times){
-                var parent = document.getElementByClass('history');
+                var parent = document.getElementById('history');
                 for (var time = 0; time < times.length; time++){
                         var p = document.createElement("p");
                         var br = document.createElement("br");
