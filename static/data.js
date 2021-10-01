@@ -90,9 +90,9 @@ var startbutton = document.getElementById('startButton');
 
         function iterateHistory(times){
                 var parent = document.getElementById('history');
-                for (time in times){
+                for (var time in times){
                         var p = document.createElement("p");
-                        var text = document.createtextnode(startTime);
+                        var text = document.createTextNode(startTime);
                         p.id = 'history-text';
                         p.appendChild(text);
                         parent.appendChild(p);
