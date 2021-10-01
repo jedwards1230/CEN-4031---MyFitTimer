@@ -36,7 +36,6 @@ var startbutton = document.getElementById('startButton');
             //document.getElementById("sptime").innerHTML = sptime;    
     
             disableStopButton()
-            elapsedTime(stopTime, startTime);
             
             
             //Post to DB
