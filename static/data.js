@@ -91,9 +91,12 @@ var startbutton = document.getElementById('startButton');
 
         function iterateHistory(times){
                 var parent = document.getElementById('history');
-                var p = document.createElement("p");
-                p.id = 'history-text';
-                parent.appendChild(p);
-        
+                for (time in times){
+                        var p = document.createElement("p");
+                        var text = document.createtextnode(startTime);
+                        p.id = 'history-text';
+                        p.appendChild(text);
+                        parent.appendChild(p);
+                }
         }
 
