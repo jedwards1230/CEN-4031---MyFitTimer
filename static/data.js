@@ -98,6 +98,7 @@ var startbutton = document.getElementById('startButton');
                         var text = document.createTextNode(elapsedT);
                         p.classList.add('history-text');
                         p.appendChild(text);
+                        p.appendChild(br);
                         parent.appendChild(p);
                 }
         }
