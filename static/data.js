@@ -92,9 +92,11 @@ var startbutton = document.getElementById('startButton');
                 var parent = document.getElementById('history');
                 for (var time = 0; time < times.length; time++){
                         var p = document.createElement("p");
-                        var br = doucument.createElement("br");
-                        var text = document.createTextNode(times[time].startTime);
-                        p.classList = 'history-text';
+                        var br = document.createElement("br");
+                        //calculate elapsed time
+                        var elapsedT = times[time].stopTime - times[time].startTime;
+                        var text = document.createTextNode(elapsedT);
+                        p.classList.add('history-text');
                         p.appendChild(text);
                         parent.appendChild(p);
                 }
