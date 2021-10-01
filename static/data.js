@@ -92,7 +92,7 @@ var startbutton = document.getElementById('startButton');
                 var parent = document.getElementById('history');
                 for (var time = 0; time < times.length; time++){
                         var p = document.createElement("p");
-                        var text = document.createTextNode(startTime);
+                        var text = document.createTextNode(times[time].startTime);
                         p.id = 'history-text';
                         p.appendChild(text);
                         parent.appendChild(p);
