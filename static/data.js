@@ -12,7 +12,7 @@ var startbutton = document.getElementById('startButton');
     
         function timerClock(startTime){
                 var currentTime = new Date();
-                var elapsedTime = currentTime - startTime;
+                var elapsedTime = new Date((currentTime - startTime))*1000);
                 var elapsedTimer = [ elapsedTime.getHours(), String(elapsedTime.getMinutes()).padStart(2,"0"), String(elapsedTime.getSeconds()).padStart(2,"0")].join(":");
                 document.getElementById('elapsedTimer');
 
