@@ -79,8 +79,8 @@ var startbutton = document.getElementById('startButton');
             var hours = date.getHours();
 
             // Minutes part from the timestamp
-            var minutes = "0" + date.getMinutes();
-            var seconds = "0" + date.getSeconds();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
 
             //to show time in hh:mm:ss
             var formattedElapsedTime = [hours, String(minutes).padStart(2,"0"), String(seconds).padStart(2,"0")].join(":");
