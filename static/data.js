@@ -13,7 +13,7 @@ var startbutton = document.getElementById('startButton');
         function timerClock(startTime){
                 var currentTime = new Date();
                 var elapsedTime = currentTime - startTime;
-                var elapsedTimer = [ elapsedTimer.getHours(), String(elapsedTimer.getMinutes()).padStart(2,"0"), String(elapsedTimer.getSeconds()).padStart(2,"0")].join(":");
+                var elapsedTimer = [ elapsedTime.getHours(), String(elapsedTime.getMinutes()).padStart(2,"0"), String(elapsedTime.getSeconds()).padStart(2,"0")].join(":");
                 document.getElementById('elapsedTimer');
 
         }
