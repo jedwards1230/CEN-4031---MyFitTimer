@@ -12,7 +12,7 @@ var startbutton = document.getElementById('startButton');
     
         function timerClock(startTime){
                 var currentTime = new Date();
-                var elapsedTime = new Date((currentTime - startTime))*1000);
+                var elapsedTime = new Date((currentTime - startTime)*1000);
                 var elapsedTimer = [ elapsedTime.getHours(), String(elapsedTime.getMinutes()).padStart(2,"0"), String(elapsedTime.getSeconds()).padStart(2,"0")].join(":");
                 document.getElementById('elapsedTimer');
 
@@ -83,7 +83,7 @@ var startbutton = document.getElementById('startButton');
             var seconds = "0" + date.getSeconds();
 
             //to show time in hh:mm:ss
-            var formattedElapsedTime = [hours, String(minutes).padStart(2,"0"), String(seconds).padStart(2,"0")].join(:);
+            var formattedElapsedTime = [hours, String(minutes).padStart(2,"0"), String(seconds).padStart(2,"0")].join(":");
             return formattedElapsedTime;
         }
 
