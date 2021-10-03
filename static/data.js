@@ -14,7 +14,7 @@ var startbutton = document.getElementById('startButton');
                 var currentTime = new Date();
                 var elapsedTime = new Date((currentTime - startTime)*1000);
                 var elapsedTimer = [ elapsedTime.getHours(), String(elapsedTime.getMinutes()).padStart(2,"0"), String(elapsedTime.getSeconds()).padStart(2,"0")].join(":");
-                document.getElementById('elapsedTimer') = elapsedTimer;
+                document.getElementById('elapsedTimer').innerHTML = elapsedTimer;
 
         }
     
