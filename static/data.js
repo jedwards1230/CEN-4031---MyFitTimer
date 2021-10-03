@@ -4,25 +4,28 @@ var startbutton = document.getElementById('startButton');
     
         var startTime;
         var stopTime;
+        var timer;
     
         startbutton.onclick = start;
         stopbutton.onclick = stop;
     
     
-    
+        function timerClock(startTime){
+                var currentTime = new Date();
+                var elapsedTime = currentTime - startTime;
+                var elapsedTimer = [ elapsedTimer.getHours(), String(elapsedTimer.getMinutes()).padStart(2,"0"), String(elapsedTimer.getSeconds()).padStart(2,"0")].join(":");
+                document.getElementById('elapsedTimer');
+
+        }
     
         // function to get start time
         function start(){
             startTime = new Date();
-    
-            // To get time in hh:mm formate
-            //var stime = [ startTime.getHours(), String(startTime.getMinutes()).padStart(2,"0"), String(startTime.getSeconds()).padStart(2,"0")].join(":");
-            //document.getElementById("stime").innerHTML = stme;
-            
+            //counter
+            timer = setInterval(timerClock(startTime), 1000);
+                
             disableStartButton();
-    
             return startTime;
-    
         }
     
     
@@ -30,6 +33,8 @@ var startbutton = document.getElementById('startButton');
         function stop(){
             stopTime = new Date();
             
+            //to clear the timer clock
+            clearInterval(timer);
             
             // To get time in hh:mm formate
             //var sptime = [ stopTime.getHours(), String(stopTime.getMinutes()).padStart(2,"0"), String(stopTime.getSeconds()).padStart(2,"0")].join(":");
