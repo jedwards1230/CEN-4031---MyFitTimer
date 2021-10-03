@@ -17,7 +17,7 @@ var startbutton = document.getElementById('startButton');
     
             // To get time in hh:mm formate
             //var stime = [ startTime.getHours(), String(startTime.getMinutes()).padStart(2,"0"), String(startTime.getSeconds()).padStart(2,"0")].join(":");
-            //document.getElementById("stime").innerHTML = stime;
+            //document.getElementById("stime").innerHTML = stme;
             
             disableStartButton();
     
@@ -38,11 +38,7 @@ var startbutton = document.getElementById('startButton');
             disableStopButton()
             
             
-            //Post to DB
-             /* $.post( "/postmethod", {
-                javascript_data: data 
-              }); */  
-                
+            //Post to DB 
                $.ajax({
                 type: "POST",
                 url: "/postmethod",
@@ -57,23 +53,11 @@ var startbutton = document.getElementById('startButton');
             return stopTime;
         }
     
-    
-        //function to calculate elapsed time
-        /*function elapsedTime(stopTime, startTime){
-    
-            var deltaTime = stopTime.getTime() - startTime.getTime();
-            document.getElementById("deltaTime").innerHTML = Math.abs(Math.round(deltaTime/1000));
-        }*/
-    
 
         //To insure Start button can't be clicked more than once without clicking the stop button
         function disableStartButton(){
             document.getElementById('startButton').disabled = true;
             document.getElementById('stopButton').disabled = false;
-            
-            //Will not display the previous elapsed time and the stop time
-            //document.getElementById('sptime').style.display = "none";
-            //document.getElementById('deltaTime').style.display = "none";
         }
         
 
@@ -81,11 +65,21 @@ var startbutton = document.getElementById('startButton');
         function disableStopButton(){
             document.getElementById('startButton').disabled = false;
             document.getElementById('stopButton').disabled = true;
-            
-            //Will display the elapsed time and the stop time
-            //document.getElementById('sptime').style.display = "block";
-            //document.getElementById('deltaTime').style.display = "block";
-    
+        }
+
+        function timeConversion(elapsedT){
+
+            // make it in milliseconds by *1000 since js takes milliseconds
+            var date = new Date(elapsedT  * 1000);
+            var hours = date.getHours();
+
+            // Minutes part from the timestamp
+            var minutes = "0" + date.getMinutes();
+            var seconds = "0" + date.getSeconds();
+
+            //to show time in hh:mm:ss
+            var formattedElapsedTime = [hours, String(minutes).padStart(2,"0"), String(seconds).padStart(2,"0")].join(:);
+            return formattedElapsedTime;
         }
 
         function iterateHistory(times){
@@ -95,7 +89,9 @@ var startbutton = document.getElementById('startButton');
                         var br = document.createElement("br");
                         //calculate elapsed time
                         var elapsedT = times[time].stopTime - times[time].startTime;
-                        var text = document.createTextNode(elapsedT);
+                      
+                        //convert time to hh:mm:ss and set it to variable
+                        var text = document.createTextNode(timeConversion(elapsedT));
                         p.classList.add('history-text');
                         p.appendChild(text);
                         p.appendChild(br);
