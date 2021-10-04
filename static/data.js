@@ -104,3 +104,33 @@ var startbutton = document.getElementById('startButton');
                 }
         }
 
+   
+
+        var delta;
+        var elapsedT
+        var hours; 
+        var minutes;
+        var seconds; 
+        var t;
+        
+        //For the time to continue to count up when start is clicked
+        $("#startButton").click( function(){
+            delta = setInterval(function() {
+                
+                t = new Date()
+                elapsed = t - startTime;
+                elapsedT = new Date(elapsed);
+                var elapsedTimer = [ String(Math.floor(elapsedT/36000)).padStart(2, "0"), String(elapsedT.getMinutes()).padStart(2,"0"), String(elapsedT.getSeconds()).padStart(2,"0")].join(":");
+
+                document.getElementById("elapsedTimer").innerHTML = elapsedTimer;
+              }, 1000);
+         });
+        
+         //For the time to continue to count up when stop is clicked
+         $("#stopButton").click( function(){
+            clearInterval(delta);
+            var finalElapsedTime = stopTime - startTime;
+            var elapsedTimed = [ String(finalElapsedTime.getHours()), String(finalElapsedTime.getMinutes()).padStart(2,"0"), String(finalElapsedTime.getSeconds()).padStart(2,"0")].join(":");
+             document.getElementById("elapsedTimer").innerHTML = elapsedTimed;
+            });
+    
