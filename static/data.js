@@ -33,11 +33,10 @@ function timeFormat(time) {
     + ":" + seconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
 }
 
+/*
 // function to get start time
 function start(){
     startTime = new Date();
-    //counter
-    //timer = setInterval(timerClock(startTime), 1000);
         
     disableStartButton();
     return startTime;
@@ -47,13 +46,8 @@ function start(){
 // function to get stop time
 function stop(){
     stopTime = new Date();
-    
-    // To get time in hh:mm formate
-    //var sptime = [ stopTime.getHours(), String(stopTime.getMinutes()).padStart(2,"0"), String(stopTime.getSeconds()).padStart(2,"0")].join(":");
-    //document.getElementById("sptime").innerHTML = sptime;    
 
     disableStopButton()
-    
     
     //Post to DB 
     $.ajax({
@@ -69,7 +63,7 @@ function stop(){
         
     return stopTime;
 }
-
+*/
 
 //To insure Start button can't be clicked more than once without clicking the stop button
 function disableStartButton(){
@@ -127,6 +121,9 @@ var t;
 
 //For the time to continue to count up when start is clicked
 $("#startButton").click( function(){
+    startTime = new Date();
+    disableStartButton();
+    
     delta = setInterval(function() {
         
         let t = new Date();
@@ -141,6 +138,22 @@ $("#startButton").click( function(){
 //For the time to continue to count up when stop is clicked
 $("#stopButton").click( function(){
     clearInterval(delta);
+    
+    stopTime = new Date();
+    disableStopButton()
+    
+    //Post to DB 
+    $.ajax({
+    type: "POST",
+    url: "/postmethod",
+    data: JSON.stringify({startTime: startTime.getTime(), stopTime: stopTime.getTime()}),
+    contentType: "application/json",
+    dataType: 'json',
+    success: function(result) {
+        numRows.innerHTML = result.rows; 
+    } 
+    });
+        
     var finalElapsedTime = stopTime - startTime;
     //var elapsedTimed = [ String(finalElapsedTime.getHours()), String(finalElapsedTime.getMinutes()).padStart(2,"0"), String(finalElapsedTime.getSeconds()).padStart(2,"0")].join(":");
     document.getElementById("elapsedTimer").innerHTML = timeFormat(finalElapsedTime);
