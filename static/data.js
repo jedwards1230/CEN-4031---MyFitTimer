@@ -2,6 +2,7 @@ var startbutton = document.getElementById('startButton');
 var stopbutton = document.getElementById('stopButton');
 stopbutton.disabled = true;
 
+var times;
 var startTime;
 var stopTime;
 var timer;
@@ -10,7 +11,7 @@ startbutton.onclick = start;
 stopbutton.onclick = stop;
 
 function logHistoric(data) {
-    var times = data;
+    times = data;
     iterateHistory();
 }
 
@@ -21,8 +22,6 @@ function logHistoric(data) {
         document.getElementById('elapsedTimer').innerHTML = elapsedTimer;
 
 }*/
-
-
 
 function timeFormat(time) {
     var hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -102,7 +101,7 @@ function timeConversion(elapsedT){
 
 function iterateHistory(){
     var parent = document.getElementById('history');
-    for (var time = times.length; time >= 0; time--){
+    for (var time = times.length - 1; time >= 0; time--){
             var p = document.createElement("p");
             var br = document.createElement("br");
             //calculate elapsed time
