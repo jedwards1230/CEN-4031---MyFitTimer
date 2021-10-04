@@ -9,6 +9,10 @@ var timer;
 startbutton.onclick = start;
 stopbutton.onclick = stop;
 
+function logHistoric(data) {
+    var times = data;
+    iterateHistory();
+}
 
 /*function timerClock(startTime){
         var currentTime = new Date();
@@ -53,16 +57,16 @@ function stop(){
     
     
     //Post to DB 
-        $.ajax({
-        type: "POST",
-        url: "/postmethod",
-        data: JSON.stringify({startTime: startTime.getTime(), stopTime: stopTime.getTime()}),
-        contentType: "application/json",
-        dataType: 'json',
-        success: function(result) {
-            numRows.innerHTML = result.rows; 
-        } 
-        });
+    $.ajax({
+    type: "POST",
+    url: "/postmethod",
+    data: JSON.stringify({startTime: startTime.getTime(), stopTime: stopTime.getTime()}),
+    contentType: "application/json",
+    dataType: 'json',
+    success: function(result) {
+        numRows.innerHTML = result.rows; 
+    } 
+    });
         
     return stopTime;
 }
@@ -96,21 +100,21 @@ function timeConversion(elapsedT){
     return formattedElapsedTime;
 }
 
-function iterateHistory(times){
-        var parent = document.getElementById('history');
-        for (var time = 0; time < times.length; time++){
-                var p = document.createElement("p");
-                var br = document.createElement("br");
-                //calculate elapsed time
-                var elapsedT = times[time].stopTime - times[time].startTime;
-                
-                //convert time to hh:mm:ss and set it to variable
-                var text = document.createTextNode(timeFormat(elapsedT));
-                p.classList.add('history-text');
-                p.appendChild(text);
-                p.appendChild(br);
-                parent.appendChild(p);
-        }
+function iterateHistory(){
+    var parent = document.getElementById('history');
+    for (var time = 0; time < times.length; time++){
+            var p = document.createElement("p");
+            var br = document.createElement("br");
+            //calculate elapsed time
+            var elapsedT = times[time].stopTime - times[time].startTime;
+            
+            //convert time to hh:mm:ss and set it to variable
+            var text = document.createTextNode(timeFormat(elapsedT));
+            p.classList.add('history-text');
+            p.appendChild(text);
+            p.appendChild(br);
+            parent.appendChild(p);
+    }
 }
 
 
