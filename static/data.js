@@ -45,9 +45,6 @@ function start(){
 function stop(){
     stopTime = new Date();
     
-    //to clear the timer clock
-    clearInterval(timer);
-    
     // To get time in hh:mm formate
     //var sptime = [ stopTime.getHours(), String(stopTime.getMinutes()).padStart(2,"0"), String(stopTime.getSeconds()).padStart(2,"0")].join(":");
     //document.getElementById("sptime").innerHTML = sptime;    
