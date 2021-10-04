@@ -10,19 +10,31 @@ var startbutton = document.getElementById('startButton');
         stopbutton.onclick = stop;
     
     
-        function timerClock(startTime){
+        /*function timerClock(startTime){
                 var currentTime = new Date();
                 var elapsedTime = new Date((currentTime - startTime)*1000);
                 var elapsedTimer = [ elapsedTime.getHours(), String(elapsedTime.getMinutes()).padStart(2,"0"), String(elapsedTime.getSeconds()).padStart(2,"0")].join(":");
                 document.getElementById('elapsedTimer').innerHTML = elapsedTimer;
 
+        }*/
+
+
+
+        function timeFormat(time) {
+            var hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((time % (1000 * 60)) / 1000);
+
+            return hours.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) 
+            + ":" + minutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) 
+            + ":" + seconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
         }
     
         // function to get start time
         function start(){
             startTime = new Date();
             //counter
-            timer = setInterval(timerClock(startTime), 1000);
+            //timer = setInterval(timerClock(startTime), 1000);
                 
             disableStartButton();
             return startTime;
@@ -96,7 +108,7 @@ var startbutton = document.getElementById('startButton');
                         var elapsedT = times[time].stopTime - times[time].startTime;
                       
                         //convert time to hh:mm:ss and set it to variable
-                        var text = document.createTextNode(timeConversion(elapsedT));
+                        var text = document.createTextNode(timeFormat(elapsedT));
                         p.classList.add('history-text');
                         p.appendChild(text);
                         p.appendChild(br);
@@ -117,12 +129,12 @@ var startbutton = document.getElementById('startButton');
         $("#startButton").click( function(){
             delta = setInterval(function() {
                 
-                t = new Date()
+                t = new Date();
                 elapsed = t - startTime;
                 elapsedT = new Date(elapsed);
-                var elapsedTimer = [ String(Math.floor(elapsedT/36000)).padStart(2, "0"), String(elapsedT.getMinutes()).padStart(2,"0"), String(elapsedT.getSeconds()).padStart(2,"0")].join(":");
+                //var elapsedTimer = [ String(Math.floor(elapsedT/36000)).padStart(2, "0"), String(elapsedT.getMinutes()).padStart(2,"0"), String(elapsedT.getSeconds()).padStart(2,"0")].join(":");
 
-                document.getElementById("elapsedTimer").innerHTML = elapsedTimer;
+                document.getElementById("elapsedTimer").innerHTML = timeFormat(elapsedT);
               }, 1000);
          });
         
@@ -130,7 +142,7 @@ var startbutton = document.getElementById('startButton');
          $("#stopButton").click( function(){
             clearInterval(delta);
             var finalElapsedTime = stopTime - startTime;
-            var elapsedTimed = [ String(finalElapsedTime.getHours()), String(finalElapsedTime.getMinutes()).padStart(2,"0"), String(finalElapsedTime.getSeconds()).padStart(2,"0")].join(":");
-             document.getElementById("elapsedTimer").innerHTML = elapsedTimed;
+            //var elapsedTimed = [ String(finalElapsedTime.getHours()), String(finalElapsedTime.getMinutes()).padStart(2,"0"), String(finalElapsedTime.getSeconds()).padStart(2,"0")].join(":");
+             document.getElementById("elapsedTimer").innerHTML = timeFormat(finalElapsedTime);
             });
     
