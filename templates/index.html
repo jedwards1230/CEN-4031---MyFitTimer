@@ -25,17 +25,6 @@
     <div class="button-cluster">
         <button id="startButton" class="button">Start</button>
         <button id="stopButton" class="button">Stop</button>
-        <!---<br>
-        Start Time (hh:mm:ss): <p id="stime"></p>
-        Stop Time (hh:mm:ss): <p id="sptime"></p>
-        <br>
-        Elapsed Time (seconds): <p id="deltaTime"></p>
-        <br>--->
-         <ul>
-            {% for times in all_times%}
-              <li>{{ times.startTime}} - {{ times.stopTime}}</li>
-            {% endfor %}  
-        </ul>
     </div>
     <div id="history">
     </div>
