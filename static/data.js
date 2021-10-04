@@ -102,7 +102,7 @@ function timeConversion(elapsedT){
 
 function iterateHistory(){
     var parent = document.getElementById('history');
-    for (var time = 0; time < times.length; time++){
+    for (var time = times.length; time >= 0; time--){
             var p = document.createElement("p");
             var br = document.createElement("br");
             //calculate elapsed time
