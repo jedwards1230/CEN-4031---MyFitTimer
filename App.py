@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from sqlalchemy import Column, Integer
 from sqlalchemy.sql.sqltypes import BIGINT
 from data_connection import Session, engine, Base
+import json
 
 
 class Entry(Base):
@@ -19,10 +20,11 @@ class Entry(Base):
 
     # Initialize object with times
     def __init__(self, sTime, spTime):
-        self.start_time = sTime
-        self.stop_time = spTime
         # Create table if it does not exist
         engine.execute("CREATE TABLE IF NOT EXISTS times_table (time_idx int, start_time BIGINT, stop_time BIGINT)")
+        self.start_time = sTime
+        self.stop_time = spTime
+        
 
 # Create SQL tables
 Base.metadata.create_all(engine)
@@ -40,6 +42,7 @@ def grab_history():
     # Query all rows from db
     times = session.query(Entry).all()
     session.close()
+    del session
 
     # Assign times to list
     all_times = [{'startTime':time.start_time,
@@ -58,24 +61,27 @@ def index():
     return render_template('index.html', data=data)
 
 # POST request directory
-@app.route('/postmethod', methods = ['POST'])
-def get_post_javascript_data():
-    # Pull JSON from POST
-    jsdata = request.get_json()
-    # Verify data comes as positive integers
-    if jsdata.get('startTime') > 0 and jsdata.get('stopTime') > 0:
-        # Create SQL session
-        session = Session()
-        # Assign times to Entry object
-        entry = Entry(jsdata.get('startTime'), 
-                        jsdata.get('stopTime'))
-        # Add entry object to SQL session
-        session.add(entry)
-        # Delete entry object
-        del entry
-        # Push entry and close SQL session
-        session.commit()
-        session.close()
+@app.route('/data', methods = ['POST', 'GET'])
+def data():
+    if request.method == 'POST':
+        # Pull JSON from POST
+        jsdata = request.get_json()
+        # Verify data comes as positive integers
+        if jsdata.get('startTime') > 0 and jsdata.get('stopTime') > 0:
+            # Create SQL session
+            session = Session()
+            # Assign times to Entry object
+            entry = Entry(jsdata.get('startTime'), 
+                            jsdata.get('stopTime'))
+            # Add entry object to SQL session
+            session.add(entry)
+            # Delete entry object
+            del entry
+            # Push entry and close SQL session
+            session.commit()
+            session.close()
+    elif request.method == 'GET':
+        return json.dumps(grab_history())
 
     return '/'
 

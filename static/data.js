@@ -2,7 +2,6 @@ var startbutton = document.getElementById('startButton');
 var stopbutton = document.getElementById('stopButton');
 stopbutton.disabled = true;
 
-var times;
 var startTime;
 var stopTime;
 var timer;
@@ -93,24 +92,46 @@ function timeConversion(elapsedT){
     return formattedElapsedTime;
 }
 
+function ajaxCall(callback){
+    $.ajaxSetup ({
+        cache: false
+    });
+    $.ajax({
+        type: "GET",
+        url: '/data',
+        contentType: "application/json",
+        dataType: 'json',
+        success: callback
+    });
+ }
+
 function iterateHistory(){
     var parent = document.getElementById('history');
-    for (var time = times.length - 1; time >= 0; time--){
-            var p = document.createElement("p");
-            var br = document.createElement("br");
+
+    /*
+    // clear previous entries
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }*/
+
+    ajaxCall(times => {
+        for (var time = times.length - 1; time >= 0; time--){
+            let p = document.createElement("p");
+            let br = document.createElement("br");
             //calculate elapsed time
-            var elapsedT = times[time].stopTime - times[time].startTime;
+            let elapsedT = times[time].stopTime - times[time].startTime;
             
             //convert time to hh:mm:ss and set it to variable
-            var text = document.createTextNode(timeFormat(elapsedT));
+            let text = document.createTextNode(timeFormat(elapsedT));
             p.classList.add('history-text');
             p.appendChild(text);
             p.appendChild(br);
             parent.appendChild(p);
-    }
+        }
+    })
 }
 
-
+iterateHistory();
 
 var delta;
 var elapsedT
@@ -144,18 +165,20 @@ $("#stopButton").click( function(){
     
     //Post to DB 
     $.ajax({
-    type: "POST",
-    url: "/postmethod",
-    data: JSON.stringify({startTime: startTime.getTime(), stopTime: stopTime.getTime()}),
-    contentType: "application/json",
-    dataType: 'json',
-    success: function(result) {
-        numRows.innerHTML = result.rows; 
-    } 
+        type: "POST",
+        url: "/data",
+        data: JSON.stringify({startTime: startTime.getTime(), stopTime: stopTime.getTime()}),
+        contentType: "application/json",
+        dataType: 'json',
+        success: function(result) {
+            numRows.innerHTML = result.rows; 
+        } 
     });
         
     var finalElapsedTime = stopTime - startTime;
     //var elapsedTimed = [ String(finalElapsedTime.getHours()), String(finalElapsedTime.getMinutes()).padStart(2,"0"), String(finalElapsedTime.getSeconds()).padStart(2,"0")].join(":");
     document.getElementById("elapsedTimer").innerHTML = timeFormat(finalElapsedTime);
+
+    iterateHistory();
 });
 
