@@ -6,10 +6,10 @@ var times;
 var startTime;
 var stopTime;
 var timer;
-
+/*
 startbutton.onclick = start;
 stopbutton.onclick = stop;
-
+*/
 function logHistoric(data) {
     times = data;
     iterateHistory();
