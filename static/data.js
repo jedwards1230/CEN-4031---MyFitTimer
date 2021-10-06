@@ -37,6 +37,7 @@ async function iterateHistory(){
         }
     });
 
+    //lop through data latest data first.
     for (var i = times.length - 1; i >= 0; i--){
         var p = document.createElement("p");
         var br = document.createElement("br");
@@ -52,6 +53,7 @@ async function iterateHistory(){
     }
 }
 
+//call to display on initial page load
 iterateHistory();
 
 var delta;
@@ -98,6 +100,7 @@ $("#stopButton").click( async function(){
         dataType: 'json'
     });
 
+    //called again each time the stop buttton is pressed
     iterateHistory();
         
     var finalElapsedTime = stopTime - startTime;
