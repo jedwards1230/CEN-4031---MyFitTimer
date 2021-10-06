@@ -6,7 +6,7 @@ var startTime;
 var stopTime;
 var timer;
 
-
+//Function to get the hours min and sec and format as hh:mm:ss
 function timeFormat(time) {
     var hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
@@ -18,21 +18,7 @@ function timeFormat(time) {
 }
 
 
-//To insure Start button can't be clicked more than once without clicking the stop button
-function disableStartButton(){
-    document.getElementById('startButton').disabled = true;
-    document.getElementById('stopButton').disabled = false;
-}
-
-
-//To insure Stop button can't be clicked more than once without clicking the Start button
-function disableStopButton(){
-    document.getElementById('startButton').disabled = false;
-    document.getElementById('stopButton').disabled = true;
-}
-
 function timeConversion(elapsedT){
-
     // make it in milliseconds by *1000 since js takes milliseconds
     var date = new Date(elapsedT  * 1000);
     var hours = date.getHours();
@@ -46,6 +32,7 @@ function timeConversion(elapsedT){
     return formattedElapsedTime;
 }
 
+//pulls data, loops through history, and sets them to html elements 
 async function iterateHistory(){
     var parent = document.getElementById('history');
     
@@ -92,7 +79,10 @@ var t;
 //For the time to continue to count up when start is clicked
 $("#startButton").click( function(){
     startTime = new Date();
-    disableStartButton();
+    
+    //To insure Start button can't be clicked more than once without clicking the stop button
+    document.getElementById('startButton').disabled = true;
+    document.getElementById('stopButton').disabled = false;
     
     delta = setInterval(function() {
         
@@ -110,8 +100,11 @@ $("#stopButton").click( async function(){
     clearInterval(delta);
     
     stopTime = new Date();
-    disableStopButton()
-    
+
+    //To insure Stop button can't be clicked more than once without clicking the Start button
+    document.getElementById('startButton').disabled = false;
+    document.getElementById('stopButton').disabled = true;
+
     //Post to DB 
     await $.ajax({
         type: "POST",
