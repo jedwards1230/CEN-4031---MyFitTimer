@@ -1,88 +1,40 @@
-# Final Project for CEN 4031
-
-It is important to remember that the goal of the project is to demonstrate your understanding of the subject matter. During this course we have studied several frameworks utilized in different language stacks. We will demonstrate the use of those frameworks in our final project.
-
-
-### The Project
-*************
-
-Complete the following MyFitTimer Application:
-
-The program should display an interface to the user with a start timer and end timer button. 
-* When the start timer button is clicked, the application needs to keep track of the start time. 
-* When the end timer is clicked, the screen should display a textbox with the elapsed time. 
-* Under the timer display, it should display a list of previous timer runs. 
-  * This means that you need to store the time elapsed for each new run in a database. 
-* The application should use frameworks at the necessary layers 
- 
-For example, if you are using .net, you should have the following:
-
-Presentation Layer – HTML/CSS/JS 
-
-Application Layer –   Python (Flask, SQLAlchemy)
-
-Data Access Layer – PostgreSQL
-
-
-### Bonus Points
-**************
-
-Dependency Injection - 5 pts
-
-Unit Tests - 5 pts
-
-REST - 5 pts
-
-
-### Group Roles
-*****************
-
-Angel - Design
-
-Tinesha - Presentation level logic (javascript)
-
-Justin - Domain layer (includes logic to read/write data layer) (python)
-
-Group Leader: 
-* Makes decisions based on input from everyone in the group
-* Provides professor with regular Status Reports
-* Contacts professor for advice or help with the project
-
-Everyone: 
-* Provide code for a particular layer
-* Can get help from other members of the team if necessary, but majority of the work should be theirs
-
-
-### Status Reports
-****************
-
-The professor requires weekly status reports submitted by the team leader via e-mail. 
-
-* They should contain specifics relevant to the project. 
-* They should contain how well the program is coming together. 
-* The team member will also discuss in the status report team members who are not participating. 
-* If you are not participating, the professor will remove you from the group and you will be responsible for completing the entire project by yourself.
-
-
-### Submitting the Final Project
-******************************
-
-Each team will submit a final project on October 7th, 2021. Teams will submit a word document containing a group section and an individual section. The submission should also include screenshots of the running application as well as a link to the Github repository.
+# My Fit Timer
 
 
 ### Group Section
 ***************
 
-The group section contains a description of the project, what it does, how it is used, etc. It should also contain explanations on how the project demonstrates the team's understanding and (hopefully) mastery of the subject matter.
+Team members
+* Angel - Design
+* Tinesha - Presentation level logic (javascript)
+* Justin - Domain layer (includes logic to read/write data layer) (python)
 
-The group section should contain the following information:
+General Description
+* A stopwatch application that records the amount of time that passes between pressing the start and stop buttons.
 
-Team members and their roles/assignments. This should include the project and the group paper.
-A general description of the project.
+The Stack
+* Presentation Layer – HTML/CSS/JS (JQuery)
+* Application Layer –   Python (Flask, SQLAlchemy)
+* Data Access Layer – PostgreSQL
+
 Initial requirements of the project. (What you planned to do). Identify any requirement changes that were made during design or implementation.
+* We planned to make a stopwatch application based around a web server. This just interested each of us, and we each had skills to apply between Python for the server, PostgreSQL for the database, javascript for the presentation layer logic, and html/css for the display.
+
 Explain how the project demonstrates your understanding and mastery of the topic. For example, for the Data Access Layer, this section would describe the framework chosen, and what patterns were used. Explain how this contributed to the quality of the project. (In other words, you didn't just tack it on at the end. :^)
+* PostgreSQL was chosen for the database and SQLalchemy was the framework to interact between the db and the domain layer. these weren't necessarily better or worse than any other database or framework, we were just already familiar with them and they were plenty enough to meet project requirements. This allows for quick and scalable storage.
+* Flask was the chosen server framework due to its ease of use, especially for a small project like this. Most of our time in this project was figuring out javascript logic. All that Flask and Python had to do was present the pages and pass data to/from the db. 
+* We use JQuery several times throughout our javascript file for the presentation layer due to its simplicity. It is also what allows us to make the necessary POST and GET calls to exchange data with the server.
+
 Collection of status reports and other documents describing the design and implementation process. These should include major decisions and reasons behind them. (You don't need to include detailed bug fixes unless they are germain to major decisions.)
+* To be gathered
+
 User documentation. How to run the program, what files to use for input, etc. This should be enough that I can exercise your program.
+* Fill in database connection details within data_connection.py. We used PostgreSQL.
+* Run 'python App.py'.
+* Follow url provided by Flask in CLI.
+* Press 'Start' to start timer.
+* Press 'Stop' to stop timer and update the history list.
+
 An evaluation of the final project. Include what you did right and what you did wrong. Describe what you would have liked to accomplish if you had more time, and what you would do differently if you had to do it again.
  
 
