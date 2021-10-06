@@ -1,6 +1,11 @@
-
-<html>
-<head>
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>My Fit Timer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="description" content="Final Project for CEN 4031">
+    <meta name="author" content="Angel Plata, Tinesha Erskine, Justin Edwards">
     <script>
         // Fetch Fonts
         (function(d) {
@@ -11,26 +16,21 @@
           },
           h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
         })(document);
-
-        // To get the historic times
-        var times = JSON.parse('{{ data | tojson | safe}}');
     </script>
-
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
-</head>
-<body id="background">
-    <div class="timer">
-        <p class="timer-text" id="elapsedTimer">00:00:00</p>
-    </div>
-    <div class="button-cluster">
-        <button id="startButton" class="button">Start</button>
-        <button id="stopButton" class="button">Stop</button>
-    </div>
-    <div id="history">
-    </div>
-    
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script type="text/javascript" src="../static/data.js">    </script> 
-</body>
+  </head>
+  <body id="background">
+      <div class="timer">
+          <p class="timer-text" id="elapsedTimer">00:00:00</p>
+      </div>
+      <div class="button-cluster">
+          <button id="startButton" class="button">Start</button>
+          <button id="stopButton" class="button">Stop</button>
+      </div>
+      <div id="history">
+      </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/data.js">    </script> 
+  </body>
 </html>
 
