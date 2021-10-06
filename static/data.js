@@ -17,21 +17,6 @@ function timeFormat(time) {
     + ":" + seconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
 }
 
-
-function timeConversion(elapsedT){
-    // make it in milliseconds by *1000 since js takes milliseconds
-    var date = new Date(elapsedT  * 1000);
-    var hours = date.getHours();
-
-    // Minutes part from the timestamp
-    var minutes = date.getMinutes();
-    var seconds = date.getSeconds();
-
-    //to show time in hh:mm:ss
-    var formattedElapsedTime = [hours, String(minutes).padStart(2,"0"), String(seconds).padStart(2,"0")].join(":");
-    return formattedElapsedTime;
-}
-
 //pulls data, loops through history, and sets them to html elements 
 async function iterateHistory(){
     var parent = document.getElementById('history');
@@ -89,7 +74,6 @@ $("#startButton").click( function(){
         let t = new Date();
         let elapsed = t - startTime;
         let elapsedT = new Date(elapsed);
-        //var elapsedTimer = [ String(Math.floor(elapsedT/36000)).padStart(2, "0"), String(elapsedT.getMinutes()).padStart(2,"0"), String(elapsedT.getSeconds()).padStart(2,"0")].join(":");
 
         document.getElementById("elapsedTimer").innerHTML = timeFormat(elapsedT);
         }, 10);
@@ -117,7 +101,6 @@ $("#stopButton").click( async function(){
     iterateHistory();
         
     var finalElapsedTime = stopTime - startTime;
-    //var elapsedTimed = [ String(finalElapsedTime.getHours()), String(finalElapsedTime.getMinutes()).padStart(2,"0"), String(finalElapsedTime.getSeconds()).padStart(2,"0")].join(":");
     document.getElementById("elapsedTimer").innerHTML = timeFormat(finalElapsedTime);
 });
 
