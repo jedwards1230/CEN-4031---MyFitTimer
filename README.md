@@ -1,13 +1,9 @@
 # My Fit Timer
 
-
-### Group Section
-***************
-
 Team members
-* Angel - Design
-* Tinesha - Presentation level logic (javascript)
-* Justin - Domain layer (includes logic to read/write data layer) (python)
+* Angel Plata - Design
+* Tinesha Erskine - Presentation level logic (javascript)
+* Justin Edwards (lead) - Domain layer (includes logic to read/write data layer) (python)
 
 General Description
 * A stopwatch application that records the amount of time that passes between pressing the start and stop buttons.
@@ -25,8 +21,17 @@ Explain how the project demonstrates your understanding and mastery of the topic
 * Flask was the chosen server framework due to its ease of use, especially for a small project like this. Most of our time in this project was figuring out javascript logic. All that Flask and Python had to do was present the pages and pass data to/from the db. 
 * We use JQuery several times throughout our javascript file for the presentation layer due to its simplicity. It is also what allows us to make the necessary POST and GET calls to exchange data with the server.
 
-Collection of status reports and other documents describing the design and implementation process. These should include major decisions and reasons behind them. (You don't need to include detailed bug fixes unless they are germain to major decisions.)
-* To be gathered
+The following are some screenshots we took during the planning phase to assign roles and get started. 
+
+![Planning1](CourseRelated/Planning1.png?raw=true)
+
+![Planning2](CourseRelated/Planning2.png?raw=true)
+
+Status Reports:
+
+![Report1](CourseRelated/Report1.png?raw=true)
+
+![Report2](CourseRelated/Report2.png?raw=true)
 
 User documentation. How to run the program, what files to use for input, etc. This should be enough that I can exercise your program.
 * Fill in database connection details within data_connection.py. We used PostgreSQL.
@@ -36,11 +41,4 @@ User documentation. How to run the program, what files to use for input, etc. Th
 * Press 'Stop' to stop timer and update the history list.
 
 An evaluation of the final project. Include what you did right and what you did wrong. Describe what you would have liked to accomplish if you had more time, and what you would do differently if you had to do it again.
- 
-
-### Individual Section
-********************
-
-The individual sections should contain a section written by each individual student. The purpose of this section is to convince me that you understand the subject matter. This section should include an evaluation of the project from the student's perspective. (This may or may not agree with the group evaluation.)
-
-This section should also include a discussion of what was learned in the course. This should not be a rehash of the lecture notes or the text book. (i.e., not something you could have purchased or someone else could have written for you). It should contain what insights you gained from the course, especially pertaining to the group project or real-life experiences. It should not be a list of facts that you learned, but how it helped you with your project, your job, etc. How could what you learned help you to do the project better if you were to do it over again?
+* I think our final product turned out great. I think implementing a lap feature and also displaying historic lap times for each entry would make a good challenge and addition to the project. - Justin Edwards
