@@ -5,18 +5,7 @@ stopbutton.disabled = true;
 var startTime;
 var stopTime;
 var timer;
-/*
-startbutton.onclick = start;
-stopbutton.onclick = stop;
-*/
 
-/*function timerClock(startTime){
-        var currentTime = new Date();
-        var elapsedTime = new Date((currentTime - startTime)*1000);
-        var elapsedTimer = [ elapsedTime.getHours(), String(elapsedTime.getMinutes()).padStart(2,"0"), String(elapsedTime.getSeconds()).padStart(2,"0")].join(":");
-        document.getElementById('elapsedTimer').innerHTML = elapsedTimer;
-
-}*/
 
 function timeFormat(time) {
     var hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -28,37 +17,6 @@ function timeFormat(time) {
     + ":" + seconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
 }
 
-/*
-// function to get start time
-function start(){
-    startTime = new Date();
-        
-    disableStartButton();
-    return startTime;
-}
-
-
-// function to get stop time
-function stop(){
-    stopTime = new Date();
-
-    disableStopButton()
-    
-    //Post to DB 
-    $.ajax({
-    type: "POST",
-    url: "/postmethod",
-    data: JSON.stringify({startTime: startTime.getTime(), stopTime: stopTime.getTime()}),
-    contentType: "application/json",
-    dataType: 'json',
-    success: function(result) {
-        numRows.innerHTML = result.rows; 
-    } 
-    });
-        
-    return stopTime;
-}
-*/
 
 //To insure Start button can't be clicked more than once without clicking the stop button
 function disableStartButton(){
