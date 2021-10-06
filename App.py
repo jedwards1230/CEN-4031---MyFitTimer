@@ -21,7 +21,7 @@ class Entry(Base):
     # Initialize object with times
     def __init__(self, sTime, spTime):
         # Create table if it does not exist
-        engine.execute("CREATE TABLE IF NOT EXISTS times_table (time_idx int, start_time BIGINT, stop_time BIGINT)")
+        engine.execute("CREATE TABLE IF NOT EXISTS times_table (time_idx Integer, start_time BIGINT, stop_time BIGINT)")
         self.start_time = sTime
         self.stop_time = spTime
         
@@ -80,6 +80,7 @@ def data():
             # Push entry and close SQL session
             session.commit()
             session.close()
+        return jsdata
     elif request.method == 'GET':
         return json.dumps(grab_history())
 

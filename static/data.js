@@ -9,10 +9,6 @@ var timer;
 startbutton.onclick = start;
 stopbutton.onclick = stop;
 */
-function logHistoric(data) {
-    times = data;
-    iterateHistory();
-}
 
 /*function timerClock(startTime){
         var currentTime = new Date();
@@ -92,43 +88,38 @@ function timeConversion(elapsedT){
     return formattedElapsedTime;
 }
 
-function ajaxCall(callback){
-    $.ajaxSetup ({
-        cache: false
-    });
-    $.ajax({
+async function iterateHistory(){
+    var parent = document.getElementById('history');
+    
+    // clear previous entries
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+
+    // pull historic data 
+    var times = await $.ajax({
         type: "GET",
         url: '/data',
         contentType: "application/json",
         dataType: 'json',
-        success: callback
-    });
- }
-
-function iterateHistory(){
-    var parent = document.getElementById('history');
-
-    /*
-    // clear previous entries
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }*/
-
-    ajaxCall(times => {
-        for (var time = times.length - 1; time >= 0; time--){
-            let p = document.createElement("p");
-            let br = document.createElement("br");
-            //calculate elapsed time
-            let elapsedT = times[time].stopTime - times[time].startTime;
-            
-            //convert time to hh:mm:ss and set it to variable
-            let text = document.createTextNode(timeFormat(elapsedT));
-            p.classList.add('history-text');
-            p.appendChild(text);
-            p.appendChild(br);
-            parent.appendChild(p);
+        success: function(data) {
+            return data;
         }
-    })
+    });
+
+    for (var i = times.length - 1; i >= 0; i--){
+        var p = document.createElement("p");
+        var br = document.createElement("br");
+        //calculate elapsed time
+        var elapsedT = times[i].stopTime - times[i].startTime;
+        
+        //convert time to hh:mm:ss and set it to variable
+        var text = document.createTextNode(timeFormat(elapsedT));
+        p.classList.add('history-text');
+        p.appendChild(text);
+        p.appendChild(br);
+        parent.appendChild(p);
+    }
 }
 
 iterateHistory();
@@ -157,28 +148,25 @@ $("#startButton").click( function(){
     });
 
 //For the time to continue to count up when stop is clicked
-$("#stopButton").click( function(){
+$("#stopButton").click( async function(){
     clearInterval(delta);
     
     stopTime = new Date();
     disableStopButton()
     
     //Post to DB 
-    $.ajax({
+    await $.ajax({
         type: "POST",
         url: "/data",
         data: JSON.stringify({startTime: startTime.getTime(), stopTime: stopTime.getTime()}),
         contentType: "application/json",
-        dataType: 'json',
-        success: function(result) {
-            numRows.innerHTML = result.rows; 
-        } 
+        dataType: 'json'
     });
+
+    iterateHistory();
         
     var finalElapsedTime = stopTime - startTime;
     //var elapsedTimed = [ String(finalElapsedTime.getHours()), String(finalElapsedTime.getMinutes()).padStart(2,"0"), String(finalElapsedTime.getSeconds()).padStart(2,"0")].join(":");
     document.getElementById("elapsedTimer").innerHTML = timeFormat(finalElapsedTime);
-
-    iterateHistory();
 });
 
